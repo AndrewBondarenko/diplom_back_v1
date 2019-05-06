@@ -1,0 +1,21 @@
+{
+  "name": "diplom_back_v1",
+  "version": "1.0.0",
+  "description": "Full stack vue and express app",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server/index.js",
+    "dev": "nodemon server/index.js"
+  },
+  "author": "Andrii Bondarenko",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "express": "^4.16.4",
+    "mongodb": "^3.2.3"
+  },
+  "devDependencies": {
+    "nodemon": "^1.19.0"
+  }
+}
