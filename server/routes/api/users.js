@@ -6,35 +6,29 @@ const router = express.Router();
 // Get Users
 router.get('/', async (req, res) => {
     const users = await loadPostsCollection();
-    res.send(await posts.find({}).toArray());
+    res.send(await users.find({}).toArray());
 });
 
 // Add User
 router.post('/', async (req, res) => {
     const users = await loadPostsCollection();
     await users.insertOne({
-        text: req.body.text,
-        createdAt: new Date()
+        username: req.body.username,
+        password: req.body.password,
     });
     res.status(201).send();
 });
 
-// Delete User
-router.delete('/:id', async (req, res) => {
-    const users = await loadPostsCollection();
-    await users.deleteOne({ _id: new mongodb.ObjectID(req.params.id) });
-    res.status(200).send();
-});
 
 async function loadPostsCollection() {
     const client = await mongodb.MongoClient.connect(
-        'mongodb://YOUR_OWN_MONGODB',
+        "mongodb+srv://AndrewBondarenko:ab12qwaszx@cluster0-e77xk.mongodb.net/test?retryWrites=true",
         {
             useNewUrlParser: true
         }
     );
 
-    return client.db('vue_express').collection('users');
+    return client.db('test').collection('users');
 }
 
 module.exports = router;
