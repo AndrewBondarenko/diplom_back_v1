@@ -1,5 +1,5 @@
 const express = require('express');
-const mongodb = require('mongodb');
+const mongodb = require('mongodb').MongoClient;
 
 const router = express.Router();
 
@@ -21,13 +21,12 @@ router.post('/', async (req, res) => {
 
 
 async function loadPostsCollection() {
-    const client = await mongodb.MongoClient.connect(
-        "mongodb+srv://AndrewBondarenko:ab12qwaszx@cluster0-e77xk.mongodb.net/test?retryWrites=true",
+    const client = await mongodb.connect(
+        "mongodb+srv://Andrew:qwe123@cluster0-e77xk.mongodb.net/test?retryWrites=true",
         {
             useNewUrlParser: true
         }
     );
-
     return client.db('test').collection('users');
 }
 
