@@ -5,13 +5,13 @@ const router = express.Router();
 
 // Get Users
 router.get('/', async (req, res) => {
-    const users = await loadPostsCollection();
+    const users = await loadUsersCollection();
     res.send(await users.find({}).toArray());
 });
 
 // Add User
 router.post('/', async (req, res) => {
-    const users = await loadPostsCollection();
+    const users = await loadUsersCollection();
     await users.insertOne({
         username: req.body.username,
         password: req.body.password,
@@ -20,7 +20,7 @@ router.post('/', async (req, res) => {
 });
 
 
-async function loadPostsCollection() {
+async function loadUsersCollection() {
     const client = await mongodb.connect(
         "mongodb+srv://Andrew:qwe123@cluster0-e77xk.mongodb.net/test?retryWrites=true",
         {
